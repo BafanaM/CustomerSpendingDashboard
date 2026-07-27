@@ -1,0 +1,40 @@
+build:
+  maxIssues: 0
+
+style:
+  UnusedPrivateMember:
+    active: true
+    ignoreAnnotated: ['Preview']
+  MagicNumber:
+    active: true
+    excludes: ['**/test/**', '**/androidTest/**', '**/core/testing/**']
+    ignoreEnums: true
+    ignoreAnnotation: true
+    ignorePropertyDeclaration: true
+    ignoreNamedArgument: true
+    ignoreCompanionObjectPropertyDeclaration: true
+    ignoreLocalVariableDeclaration: true
+  MaxLineLength:
+    active: true
+    maxLineLength: 120
+
+complexity:
+  TooManyFunctions:
+    active: true
+    thresholdInClasses: 20
+    thresholdInInterfaces: 20
+  LongParameterList:
+    active: true
+    excludes: ['**/test/**', '**/androidTest/**', '**/core/testing/**']
+    functionThreshold: 8
+    constructorThreshold: 8
+    ignoreDefaultParameters: true
+
+naming:
+  FunctionNaming:
+    active: true
+    excludes: ['**/test/**', '**/androidTest/**']
+    ignoreAnnotated: ['Composable']
+
+comments:
+  active: false

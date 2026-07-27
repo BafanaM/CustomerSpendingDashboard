@@ -1,0 +1,17 @@
+<set xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Deliberately no overshoot: the splash icon container clips at its bounds, and
+         OvershootInterpolator's default tension scales past 1.0 (~1.3x peak), which pushed
+         the icon outside that container. Decelerate settles at exactly 1.0, so it never clips. -->
+    <objectAnimator
+        android:propertyName="scaleX"
+        android:valueFrom="0"
+        android:valueTo="1"
+        android:duration="600"
+        android:interpolator="@android:interpolator/decelerate_cubic" />
+    <objectAnimator
+        android:propertyName="scaleY"
+        android:valueFrom="0"
+        android:valueTo="1"
+        android:duration="600"
+        android:interpolator="@android:interpolator/decelerate_cubic" />
+</set>
