@@ -19,6 +19,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.customerspendingdashboard.core.common.Money
@@ -32,6 +33,7 @@ import com.example.customerspendingdashboard.core.model.Category
 import com.example.customerspendingdashboard.core.model.CategorySpend
 import com.example.customerspendingdashboard.core.model.SpendingSummary
 import com.example.customerspendingdashboard.core.model.TrendPoint
+import com.example.customerspendingdashboard.feature.dashboard.R
 import com.example.customerspendingdashboard.feature.dashboard.presentation.component.CategoryBreakdownChart
 import com.example.customerspendingdashboard.feature.dashboard.presentation.component.SpendSummaryRow
 import com.example.customerspendingdashboard.feature.dashboard.presentation.component.SpendTrendChart
@@ -130,14 +132,14 @@ private fun RangeDependentContent(
         SpendSummaryRow(summary = state.summary)
         if (state.summary.trend.isNotEmpty()) {
             Column {
-                SectionHeader(title = "Spending Trend")
+                SectionHeader(title = stringResource(R.string.dashboard_spending_trend_header))
                 SpendTrendChart(trend = state.summary.trend, modifier = Modifier.padding(top = 8.dp))
             }
         }
         if (state.categoryBreakdown.isNotEmpty()) {
             Card(colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant)) {
                 Column(modifier = Modifier.padding(16.dp)) {
-                    SectionHeader(title = "Top Categories")
+                    SectionHeader(title = stringResource(R.string.dashboard_top_categories_header))
                     CategoryBreakdownChart(
                         breakdown = state.categoryBreakdown,
                         onCategoryClick = onCategoryClick,

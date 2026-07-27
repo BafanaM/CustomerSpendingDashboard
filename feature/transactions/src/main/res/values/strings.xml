@@ -1,0 +1,3 @@
+<resources>
+    <string name="transactions_refresh_error">Couldn\'t refresh your transactions. Showing the latest saved data.</string>
+</resources>

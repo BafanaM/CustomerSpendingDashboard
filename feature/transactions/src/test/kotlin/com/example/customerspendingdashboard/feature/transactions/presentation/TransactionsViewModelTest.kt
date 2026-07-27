@@ -1,5 +1,6 @@
 package com.example.customerspendingdashboard.feature.transactions.presentation
 
+import android.content.Context
 import androidx.lifecycle.SavedStateHandle
 import app.cash.turbine.test
 import com.example.customerspendingdashboard.core.common.DataResult
@@ -32,12 +33,13 @@ class TransactionsViewModelTest {
 
     private val observeTransactions = mockk<ObserveTransactionsUseCase>()
     private val refreshTransactions = mockk<RefreshTransactionsUseCase>()
+    private val context = mockk<Context>()
 
     // Builds a TransactionsViewModel with the mocked use cases stubbed to sensible defaults.
     private fun viewModel(savedStateHandle: SavedStateHandle = SavedStateHandle()): TransactionsViewModel {
         every { observeTransactions(any()) } returns flowOf(allTransactions)
         coEvery { refreshTransactions() } returns DataResult.Success(Unit)
-        return TransactionsViewModel(observeTransactions, refreshTransactions, savedStateHandle)
+        return TransactionsViewModel(observeTransactions, refreshTransactions, savedStateHandle, context)
     }
 
     // A successful refresh yields the mocked transaction list with no error.

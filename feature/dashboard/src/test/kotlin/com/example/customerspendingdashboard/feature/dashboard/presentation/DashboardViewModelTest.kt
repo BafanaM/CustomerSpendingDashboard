@@ -1,5 +1,6 @@
 package com.example.customerspendingdashboard.feature.dashboard.presentation
 
+import android.content.Context
 import app.cash.turbine.test
 import com.example.customerspendingdashboard.core.common.DataResult
 import com.example.customerspendingdashboard.core.common.Money
@@ -43,12 +44,14 @@ class DashboardViewModelTest {
     private val observeSpendingSummary = mockk<ObserveSpendingSummaryUseCase>()
     private val observeCategoryBreakdown = mockk<ObserveCategoryBreakdownUseCase>()
     private val refreshTransactions = mockk<RefreshTransactionsUseCase>()
+    private val context = mockk<Context>()
 
     // Builds a DashboardViewModel with the mocked use cases stubbed to sensible defaults.
     private fun viewModel(): DashboardViewModel {
         every { observeSpendingSummary(any()) } returns flowOf(summary)
         every { observeCategoryBreakdown(any()) } returns flowOf(breakdown)
-        return DashboardViewModel(observeSpendingSummary, observeCategoryBreakdown, refreshTransactions)
+        every { context.getString(any()) } returns "Couldn't refresh your transactions. Showing the latest saved data."
+        return DashboardViewModel(observeSpendingSummary, observeCategoryBreakdown, refreshTransactions, context)
     }
 
     // A successful refresh yields the mocked summary and breakdown with no error.

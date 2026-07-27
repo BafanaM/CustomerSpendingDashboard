@@ -1,0 +1,7 @@
+<resources>
+    <string name="spend_summary_spent_label">Spent</string>
+    <string name="spend_summary_income_label">Income</string>
+    <string name="dashboard_spending_trend_header">Spending Trend</string>
+    <string name="dashboard_top_categories_header">Top Categories</string>
+    <string name="dashboard_refresh_error">Couldn\'t refresh your transactions. Showing the latest saved data.</string>
+</resources>
