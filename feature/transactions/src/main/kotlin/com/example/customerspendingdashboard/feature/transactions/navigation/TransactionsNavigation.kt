@@ -1,6 +1,7 @@
 package com.example.customerspendingdashboard.feature.transactions.navigation
 
 import androidx.navigation.NavController
+import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavType
 import androidx.navigation.compose.composable
@@ -47,7 +48,15 @@ fun NavGraphBuilder.transactionsGraph(navController: NavController) {
 
 /** Builds and navigates to the transactions route, optionally pre-filtered to [category] — used
  * from the dashboard's category breakdown, where tapping a category should jump straight to its
- * transactions. */
+ * transactions.
+ *
+ * Transactions is a top-level (bottom-nav) destination, so this pops up to the graph's start
+ * destination just like the bottom bar's own tab switch does. Without that popUpTo, a category
+ * click pushes a *second* transactions entry on top of any tab-switch entry already on the back
+ * stack, and the bottom bar's "Overview" tap — which only pops back to the start destination —
+ * no longer lands on top of a single, predictable transactions entry. `restoreState` is
+ * deliberately omitted so a fresh, correctly-filtered screen is always shown rather than a stale
+ * previously-saved (possibly differently-filtered) one. */
 fun NavController.navigateToTransactions(category: Category? = null) {
     val route =
         if (category != null) {
@@ -55,5 +64,8 @@ fun NavController.navigateToTransactions(category: Category? = null) {
         } else {
             TRANSACTIONS_BASE_ROUTE
         }
-    navigate(route)
+    navigate(route) {
+        popUpTo(graph.findStartDestination().id) { saveState = true }
+        launchSingleTop = true
+    }
 }
