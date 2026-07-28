@@ -38,7 +38,7 @@ class MockTransactionDataSourceImpl
         }
 
         // Builds exactly TOTAL_TRANSACTION_COUNT transactions: one salary credit per elapsed month
-        // plus randomized spend transactions distributed across those same months.
+        // plus randomised spend transactions distributed across those same months.
         private fun generateTransactions(): List<TransactionDto> {
             val random = Random(SEED)
             val today = Clock.System.todayIn(TimeZone.currentSystemDefault())
