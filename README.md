@@ -8,6 +8,16 @@ A production-grade Android app showing a customer's spending insights — overvi
 - **Transactions** — searchable (debounced), filterable by category and time range, tap through to detail.
 - **Transaction detail** — merchant, amount, category, date, note.
 
+## Screenshots
+
+| Splash | Loading | Overview |
+|---|---|---|
+| ![Splash screen](docs/screenshots/splash.png) | ![Loading state](docs/screenshots/loading.png) | ![Overview screen](docs/screenshots/overview.png) |
+
+| Transactions | Transaction detail |
+|---|---|
+| ![Transactions screen](docs/screenshots/transactions.png) | ![Transaction detail screen](docs/screenshots/transaction_detail.png) |
+
 ## Architecture
 
 Clean Architecture (Presentation → Domain → Data) across **10 Gradle modules**, each with a single, explicit reason to exist:

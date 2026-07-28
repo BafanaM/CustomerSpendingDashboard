@@ -33,7 +33,7 @@ fun StatCard(
             verticalArrangement = Arrangement.SpaceBetween,
         ) {
             Text(text = label, style = MaterialTheme.typography.labelLarge)
-            Text(text = value, style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.Bold)
+            Text(text = value, style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
             if (supportingText != null) {
                 Text(text = supportingText, style = MaterialTheme.typography.bodyMedium)
             }

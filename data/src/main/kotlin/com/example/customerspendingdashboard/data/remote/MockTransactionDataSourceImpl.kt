@@ -44,19 +44,23 @@ class MockTransactionDataSourceImpl
             val today = Clock.System.todayIn(TimeZone.currentSystemDefault())
             val transactions = mutableListOf<TransactionDto>()
 
-            // monthsAgo runs 1..MONTHS_OF_HISTORY (never the current, still-in-progress month),
-            // so every generated date is guaranteed to already be in the past — no "date <= today"
-            // filtering is needed, which is what keeps the total exactly TOTAL_TRANSACTION_COUNT.
-            for (monthsAgo in 1..MONTHS_OF_HISTORY) {
+            // monthsAgo runs 0..MONTHS_OF_HISTORY-1, where 0 is the current, still-in-progress
+            // month — capping that month's day range at today's day-of-month (instead of the
+            // usual MAX_DAY_OF_MONTH) guarantees every generated date is still <= today (so no
+            // extra "date <= today" filtering is needed) while keeping the most recent
+            // transaction close to today, not up to a month stale.
+            for (monthsAgo in 0 until MONTHS_OF_HISTORY) {
                 val monthAnchor = today.minus(monthsAgo, DateTimeUnit.MONTH)
-                val salaryDate = LocalDate(monthAnchor.year, monthAnchor.month, PAYDAY)
+                val maxDay = if (monthsAgo == 0) today.dayOfMonth else MAX_DAY_OF_MONTH
+                val salaryDate = LocalDate(monthAnchor.year, monthAnchor.month, PAYDAY.coerceAtMost(maxDay))
                 transactions += salaryTransaction(salaryDate, random)
             }
 
             repeat(SPEND_TRANSACTION_COUNT) { index ->
-                val monthsAgo = 1 + (index % MONTHS_OF_HISTORY)
+                val monthsAgo = index % MONTHS_OF_HISTORY
                 val monthAnchor = today.minus(monthsAgo, DateTimeUnit.MONTH)
-                val date = LocalDate(monthAnchor.year, monthAnchor.month, random.nextInt(1, MAX_DAY_OF_MONTH))
+                val maxDay = if (monthsAgo == 0) today.dayOfMonth else MAX_DAY_OF_MONTH
+                val date = LocalDate(monthAnchor.year, monthAnchor.month, random.nextInt(1, maxDay + 1))
                 transactions += spendTransaction(date, random, index)
             }
 
