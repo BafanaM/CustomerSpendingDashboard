@@ -13,6 +13,7 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 
+/** Compose UI test verifying [TransactionsContent]'s category-chip selection interaction. */
 @RunWith(AndroidJUnit4::class)
 class TransactionsContentTest {
     @get:Rule

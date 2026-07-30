@@ -11,6 +11,7 @@ import kotlinx.datetime.LocalDate
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
+/** Verifies totals and trend-bucketing math in [ObserveSpendingSummaryUseCase]. */
 class ObserveSpendingSummaryUseCaseTest {
     private val today = LocalDate(2026, 7, 23)
     private val repository = FakeTransactionRepository()

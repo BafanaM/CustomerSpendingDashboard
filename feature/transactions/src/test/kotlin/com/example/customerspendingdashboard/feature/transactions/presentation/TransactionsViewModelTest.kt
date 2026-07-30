@@ -21,6 +21,7 @@ import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.RegisterExtension
 
+/** Verifies [TransactionsViewModel]'s filtering, debounce, and nav-arg seeding behavior. */
 @OptIn(ExperimentalCoroutinesApi::class)
 class TransactionsViewModelTest {
     companion object {

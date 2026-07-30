@@ -15,6 +15,10 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
+/**
+ * [TransactionRepository] implementation: Room is the single source of truth for reads, and
+ * [refresh] is the only operation that talks to [RemoteTransactionDataSource].
+ */
 class TransactionRepositoryImpl
     @Inject
     constructor(

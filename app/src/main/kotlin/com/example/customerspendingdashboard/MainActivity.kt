@@ -9,6 +9,7 @@ import com.example.customerspendingdashboard.core.designsystem.theme.SpendingThe
 import com.example.customerspendingdashboard.navigation.AppNavHost
 import dagger.hilt.android.AndroidEntryPoint
 
+/** The app's single Activity — hosts the themed Compose [AppNavHost] and nothing else. */
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     // Installs the splash screen, then sets the themed Compose nav host as the activity content.

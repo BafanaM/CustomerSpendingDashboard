@@ -17,6 +17,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 
+/** Verifies [TransactionRepositoryImpl]'s Room mapping and refresh behavior against mocks. */
 class TransactionRepositoryImplTest {
     private val dao = mockk<TransactionDao>()
     private val remoteDataSource = mockk<RemoteTransactionDataSource>()

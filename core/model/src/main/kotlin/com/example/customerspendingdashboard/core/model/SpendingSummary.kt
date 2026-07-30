@@ -2,6 +2,7 @@ package com.example.customerspendingdashboard.core.model
 
 import com.example.customerspendingdashboard.core.common.Money
 
+/** Aggregated spend/income totals and trend for a selected time range. */
 data class SpendingSummary(
     val totalSpend: Money,
     val totalIncome: Money,

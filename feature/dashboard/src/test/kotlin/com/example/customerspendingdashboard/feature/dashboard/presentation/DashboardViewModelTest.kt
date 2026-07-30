@@ -23,6 +23,7 @@ import org.junit.jupiter.api.Assertions.assertNotNull
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.RegisterExtension
 
+/** Verifies [DashboardViewModel]'s state combination, refresh, and range-selection behavior. */
 class DashboardViewModelTest {
     companion object {
         @JvmField

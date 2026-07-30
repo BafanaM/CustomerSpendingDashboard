@@ -6,10 +6,12 @@ package com.example.customerspendingdashboard.core.common
  * the repository, since a Flow of local data doesn't "fail" the way a network call can.
  */
 sealed interface DataResult<out T> {
+    /** The operation completed and produced [data]. */
     data class Success<out T>(
         val data: T,
     ) : DataResult<T>
 
+    /** The operation failed with [throwable]. */
     data class Error(
         val throwable: Throwable,
     ) : DataResult<Nothing>

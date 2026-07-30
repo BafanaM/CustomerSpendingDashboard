@@ -5,7 +5,7 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 
-// Test [DispatcherProvider] backing every dispatcher with the same single test dispatcher.
+/** Test [DispatcherProvider] backing every dispatcher with the same single test dispatcher. */
 @OptIn(ExperimentalCoroutinesApi::class)
 class FakeDispatcherProvider(
     dispatcher: CoroutineDispatcher = UnconfinedTestDispatcher(),

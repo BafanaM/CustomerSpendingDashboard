@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertThrows
 import org.junit.jupiter.api.Test
 
+/** Verifies [Money]'s currency-safe arithmetic, comparison, and zero/sum helpers. */
 class MoneyTest {
     // Same-currency addition sums minor units.
     @Test

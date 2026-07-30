@@ -8,6 +8,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
+/** Hilt binding for the app's [DispatcherProvider]. */
 @Module
 @InstallIn(SingletonComponent::class)
 object DispatcherModule {

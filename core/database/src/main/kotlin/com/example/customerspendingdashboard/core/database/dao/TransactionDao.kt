@@ -6,6 +6,7 @@ import androidx.room.Upsert
 import com.example.customerspendingdashboard.core.database.entity.TransactionEntity
 import kotlinx.coroutines.flow.Flow
 
+/** Room's read/write surface over the `transactions` table. */
 @Dao
 interface TransactionDao {
     // Streams every stored transaction, newest first.

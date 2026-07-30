@@ -1,5 +1,6 @@
 package com.example.customerspendingdashboard.core.model
 
+/** A spending or income category, with the label shown in the UI. */
 enum class Category(
     val displayName: String,
 ) {

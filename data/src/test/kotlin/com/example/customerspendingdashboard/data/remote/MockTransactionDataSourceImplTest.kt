@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 
+/** Verifies the mock generator's determinism, count, date-safety, and id-uniqueness invariants. */
 class MockTransactionDataSourceImplTest {
     private val dataSource = MockTransactionDataSourceImpl()
 

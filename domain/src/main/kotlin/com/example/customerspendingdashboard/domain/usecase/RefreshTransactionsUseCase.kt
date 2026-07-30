@@ -4,6 +4,7 @@ import com.example.customerspendingdashboard.core.common.DataResult
 import com.example.customerspendingdashboard.domain.repository.TransactionRepository
 import javax.inject.Inject
 
+/** Triggers a one-shot pull of fresh transactions from the remote source into local storage. */
 class RefreshTransactionsUseCase
     @Inject
     constructor(

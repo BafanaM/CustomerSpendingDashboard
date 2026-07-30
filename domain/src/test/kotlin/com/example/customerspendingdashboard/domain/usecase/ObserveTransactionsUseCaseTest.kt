@@ -13,6 +13,7 @@ import kotlinx.datetime.minus
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
+/** Verifies [ObserveTransactionsUseCase]'s range/category/search filtering. */
 class ObserveTransactionsUseCaseTest {
     private val today = LocalDate(2026, 7, 23)
     private val repository = FakeTransactionRepository()

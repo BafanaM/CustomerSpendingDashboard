@@ -6,6 +6,7 @@ import org.junit.Assert.assertEquals
 import org.junit.Test
 import org.junit.runner.RunWith
 
+/** Default instrumented test scaffold verifying the app context resolves correctly. */
 @RunWith(AndroidJUnit4::class)
 class ExampleInstrumentedTest {
     // The instrumented app context resolves to the expected application id.

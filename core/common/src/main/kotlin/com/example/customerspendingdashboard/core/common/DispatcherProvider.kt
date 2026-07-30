@@ -13,6 +13,7 @@ interface DispatcherProvider {
     val default: CoroutineDispatcher
 }
 
+/** The real [DispatcherProvider] backing the app at runtime — delegates to [Dispatchers] directly. */
 class DefaultDispatcherProvider : DispatcherProvider {
     override val main: CoroutineDispatcher = Dispatchers.Main
     override val io: CoroutineDispatcher = Dispatchers.IO

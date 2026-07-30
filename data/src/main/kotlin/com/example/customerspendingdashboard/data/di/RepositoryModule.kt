@@ -10,6 +10,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
+/** Hilt bindings from domain-facing interfaces to their data-layer implementations. */
 @Module
 @InstallIn(SingletonComponent::class)
 abstract class RepositoryModule {

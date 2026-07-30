@@ -5,6 +5,7 @@ import com.example.customerspendingdashboard.domain.repository.TransactionReposi
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
+/** Streams a single transaction by id, for the transaction detail screen. */
 class ObserveTransactionUseCase
     @Inject
     constructor(

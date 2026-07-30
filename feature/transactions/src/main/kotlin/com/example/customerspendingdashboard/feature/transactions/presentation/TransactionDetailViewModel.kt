@@ -14,6 +14,7 @@ import javax.inject.Inject
 
 private const val SUBSCRIPTION_TIMEOUT_MS = 5_000L
 
+/** Backs the transaction detail screen — streams the single transaction named by the nav-arg id. */
 @HiltViewModel
 class TransactionDetailViewModel
     @Inject

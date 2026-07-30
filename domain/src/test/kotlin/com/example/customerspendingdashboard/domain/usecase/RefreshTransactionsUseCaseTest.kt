@@ -6,6 +6,7 @@ import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 
+/** Verifies [RefreshTransactionsUseCase] passes repository results straight through. */
 class RefreshTransactionsUseCaseTest {
     private val repository = FakeTransactionRepository()
     private val useCase = RefreshTransactionsUseCase(repository)

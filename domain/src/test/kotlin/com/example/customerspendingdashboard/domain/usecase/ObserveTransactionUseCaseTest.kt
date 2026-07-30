@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertNull
 import org.junit.jupiter.api.Test
 
+/** Verifies [ObserveTransactionUseCase]'s single-transaction lookup by id. */
 class ObserveTransactionUseCaseTest {
     private val repository = FakeTransactionRepository()
     private val useCase = ObserveTransactionUseCase(repository)

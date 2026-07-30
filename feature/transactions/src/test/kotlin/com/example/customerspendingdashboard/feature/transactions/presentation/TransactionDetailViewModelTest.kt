@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Assertions.assertNull
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.RegisterExtension
 
+/** Verifies [TransactionDetailViewModel]'s lookup of the transaction named by the nav-arg id. */
 class TransactionDetailViewModelTest {
     companion object {
         @JvmField

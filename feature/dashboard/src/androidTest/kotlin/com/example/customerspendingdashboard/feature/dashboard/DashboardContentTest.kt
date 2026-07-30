@@ -12,6 +12,7 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 
+/** Compose UI test verifying [DashboardContent]'s error-state retry interaction. */
 @RunWith(AndroidJUnit4::class)
 class DashboardContentTest {
     @get:Rule
