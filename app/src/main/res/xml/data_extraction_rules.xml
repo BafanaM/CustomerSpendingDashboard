@@ -4,16 +4,12 @@
    for details.
 -->
 <data-extraction-rules>
+    <!-- The Room database holds every stored transaction; it must not ride along in backups
+         or device-to-device transfer. -->
     <cloud-backup>
-        <!-- TODO: Use <include> and <exclude> to control what is backed up.
-        <include .../>
-        <exclude .../>
-        -->
+        <exclude domain="database" path="spending.db"/>
     </cloud-backup>
-    <!--
     <device-transfer>
-        <include .../>
-        <exclude .../>
+        <exclude domain="database" path="spending.db"/>
     </device-transfer>
-    -->
 </data-extraction-rules>

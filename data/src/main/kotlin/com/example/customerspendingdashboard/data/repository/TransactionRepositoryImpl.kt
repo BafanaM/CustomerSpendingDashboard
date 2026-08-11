@@ -40,12 +40,13 @@ class TransactionRepositoryImpl
                 .map { it?.toDomain() }
                 .flowOn(dispatcherProvider.default)
 
-        // Pulls fresh transactions from the remote source and upserts them into Room.
+        // Pulls fresh transactions from the remote source and replaces Room's contents with
+        // them, so transactions the remote no longer reports are removed locally too.
         override suspend fun refresh(): DataResult<Unit> =
             withContext(dispatcherProvider.io) {
                 runCatchingResult {
                     val remoteTransactions = remoteDataSource.fetchTransactions()
-                    dao.upsertAll(remoteTransactions.map { it.toEntity() })
+                    dao.replaceAll(remoteTransactions.map { it.toEntity() })
                 }
             }
     }

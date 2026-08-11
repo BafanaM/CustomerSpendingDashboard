@@ -1,10 +1,10 @@
 package com.example.customerspendingdashboard.feature.transactions.presentation
 
-import android.content.Context
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.customerspendingdashboard.core.common.DataResult
+import com.example.customerspendingdashboard.core.common.StringProvider
 import com.example.customerspendingdashboard.core.common.TimeRange
 import com.example.customerspendingdashboard.core.model.Category
 import com.example.customerspendingdashboard.core.model.TransactionFilter
@@ -13,7 +13,6 @@ import com.example.customerspendingdashboard.domain.usecase.RefreshTransactionsU
 import com.example.customerspendingdashboard.feature.transactions.R
 import com.example.customerspendingdashboard.feature.transactions.navigation.CATEGORY_ARG
 import dagger.hilt.android.lifecycle.HiltViewModel
-import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -47,7 +46,7 @@ class TransactionsViewModel
         private val observeTransactions: ObserveTransactionsUseCase,
         private val refreshTransactions: RefreshTransactionsUseCase,
         savedStateHandle: SavedStateHandle,
-        @ApplicationContext private val context: Context,
+        private val stringProvider: StringProvider,
     ) : ViewModel() {
         private val initialCategory: Category? =
             savedStateHandle
@@ -117,7 +116,7 @@ class TransactionsViewModel
                 when (refreshTransactions()) {
                     is DataResult.Success -> error.value = null
                     is DataResult.Error ->
-                        error.value = context.getString(R.string.transactions_refresh_error)
+                        error.value = stringProvider.getString(R.string.transactions_refresh_error)
                 }
                 isLoading.value = false
             }

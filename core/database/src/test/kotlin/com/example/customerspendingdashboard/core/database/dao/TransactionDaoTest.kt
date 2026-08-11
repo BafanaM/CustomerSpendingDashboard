@@ -81,6 +81,19 @@ class TransactionDaoTest {
             assertEquals(0, dao.count())
         }
 
+    // replaceAll drops rows missing from the new set, not just adds/updates the ones present.
+    @Test
+    fun `replaceAll removes rows absent from the new set`() =
+        runTest {
+            dao.upsertAll(listOf(entity(id = "1"), entity(id = "2")))
+
+            dao.replaceAll(listOf(entity(id = "2", merchant = "Updated"), entity(id = "3")))
+
+            dao.observeAll().test {
+                assertEquals(setOf("2", "3"), awaitItem().map { it.id }.toSet())
+            }
+        }
+
     // Builds a fixture transaction entity with sensible defaults.
     private fun entity(
         id: String,

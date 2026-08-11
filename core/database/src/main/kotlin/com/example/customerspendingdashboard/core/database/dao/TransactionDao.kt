@@ -2,6 +2,7 @@ package com.example.customerspendingdashboard.core.database.dao
 
 import androidx.room.Dao
 import androidx.room.Query
+import androidx.room.Transaction
 import androidx.room.Upsert
 import com.example.customerspendingdashboard.core.database.entity.TransactionEntity
 import kotlinx.coroutines.flow.Flow
@@ -24,6 +25,15 @@ interface TransactionDao {
     // Deletes every stored transaction.
     @Query("DELETE FROM transactions")
     suspend fun clearAll()
+
+    // Atomically replaces the entire table with [entities], so rows the remote no longer
+    // reports (a deleted/reversed transaction) don't linger locally forever the way a
+    // plain upsertAll() would leave them.
+    @Transaction
+    suspend fun replaceAll(entities: List<TransactionEntity>) {
+        clearAll()
+        upsertAll(entities)
+    }
 
     // Returns how many transactions are currently stored.
     @Query("SELECT COUNT(*) FROM transactions")

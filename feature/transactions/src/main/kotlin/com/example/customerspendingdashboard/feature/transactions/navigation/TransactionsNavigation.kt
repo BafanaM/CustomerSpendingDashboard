@@ -1,5 +1,6 @@
 package com.example.customerspendingdashboard.feature.transactions.navigation
 
+import android.net.Uri
 import androidx.navigation.NavController
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavGraphBuilder
@@ -35,7 +36,9 @@ fun NavGraphBuilder.transactionsGraph(navController: NavController) {
             ),
     ) {
         TransactionsScreen(
-            onTransactionClick = { id -> navController.navigate("transactions/$id") },
+            // Uri.encode guards against a transaction id ever containing a route-breaking
+            // character (e.g. "/" or "?"); Navigation decodes path segments automatically.
+            onTransactionClick = { id -> navController.navigate("transactions/${Uri.encode(id)}") },
         )
     }
     composable(

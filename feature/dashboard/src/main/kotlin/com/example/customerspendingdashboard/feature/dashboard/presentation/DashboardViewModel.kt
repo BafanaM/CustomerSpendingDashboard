@@ -1,16 +1,15 @@
 package com.example.customerspendingdashboard.feature.dashboard.presentation
 
-import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.customerspendingdashboard.core.common.DataResult
+import com.example.customerspendingdashboard.core.common.StringProvider
 import com.example.customerspendingdashboard.core.common.TimeRange
 import com.example.customerspendingdashboard.domain.usecase.ObserveCategoryBreakdownUseCase
 import com.example.customerspendingdashboard.domain.usecase.ObserveSpendingSummaryUseCase
 import com.example.customerspendingdashboard.domain.usecase.RefreshTransactionsUseCase
 import com.example.customerspendingdashboard.feature.dashboard.R
 import dagger.hilt.android.lifecycle.HiltViewModel
-import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -40,7 +39,7 @@ class DashboardViewModel
         private val observeSpendingSummary: ObserveSpendingSummaryUseCase,
         private val observeCategoryBreakdown: ObserveCategoryBreakdownUseCase,
         private val refreshTransactions: RefreshTransactionsUseCase,
-        @ApplicationContext private val context: Context,
+        private val stringProvider: StringProvider,
     ) : ViewModel() {
         private val selectedRange = MutableStateFlow(TimeRange.MONTH)
         private val isLoading = MutableStateFlow(true)
@@ -83,7 +82,7 @@ class DashboardViewModel
                 when (refreshTransactions()) {
                     is DataResult.Success -> error.value = null
                     is DataResult.Error ->
-                        error.value = context.getString(R.string.dashboard_refresh_error)
+                        error.value = stringProvider.getString(R.string.dashboard_refresh_error)
                 }
                 isLoading.value = false
             }

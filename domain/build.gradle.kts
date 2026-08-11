@@ -8,7 +8,9 @@ kotlin {
 
 dependencies {
     api(project(":core:model"))
-    implementation(project(":core:common"))
+    // api, not implementation: DataResult (from core:common) appears in TransactionRepository's
+    // and RefreshTransactionsUseCase's public signatures, so consumers need it transitively.
+    api(project(":core:common"))
 
     implementation(libs.kotlinx.coroutines.core)
     implementation("javax.inject:javax.inject:1")

@@ -47,17 +47,17 @@ class TransactionRepositoryImplTest {
             }
         }
 
-    // A successful refresh pulls remote data and writes it into the DAO.
+    // A successful refresh pulls remote data and replaces the DAO's contents with it.
     @Test
-    fun `refresh fetches from remote and upserts into the dao`() =
+    fun `refresh fetches from remote and replaces the dao's contents`() =
         runTest {
             coEvery { remoteDataSource.fetchTransactions() } returns listOf(dto(id = "1"))
-            coEvery { dao.upsertAll(any()) } returns Unit
+            coEvery { dao.replaceAll(any()) } returns Unit
 
             val result = repository.refresh()
 
             assertTrue(result is DataResult.Success)
-            coVerify { dao.upsertAll(match { it.single().id == "1" }) }
+            coVerify { dao.replaceAll(match { it.single().id == "1" }) }
         }
 
     // A remote fetch failure is caught and surfaced as a DataResult.Error, not thrown.

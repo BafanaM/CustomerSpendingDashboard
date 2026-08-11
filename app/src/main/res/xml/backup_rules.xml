@@ -6,8 +6,6 @@
    See https://developer.android.com/about/versions/12/backup-restore
 -->
 <full-backup-content>
-    <!--
-   <include domain="sharedpref" path="."/>
-   <exclude domain="sharedpref" path="device.xml"/>
--->
+    <!-- The Room database holds every stored transaction; it must not ride along in backups. -->
+    <exclude domain="database" path="spending.db"/>
 </full-backup-content>

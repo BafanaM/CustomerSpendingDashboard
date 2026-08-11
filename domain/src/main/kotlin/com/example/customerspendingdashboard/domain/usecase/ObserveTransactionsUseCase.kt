@@ -33,13 +33,15 @@ class ObserveTransactionsUseCase(
         { Clock.System.todayIn(TimeZone.currentSystemDefault()) },
     )
 
-    // Emits the repository's transaction stream filtered by search query, category, and date range.
-    operator fun invoke(filter: TransactionFilter): Flow<List<Transaction>> {
-        val referenceDate = today()
-        return repository.observeTransactions().map { transactions ->
+    // Emits the repository's transaction stream filtered by search query, category, and date
+    // range. `today()` is re-read on every emission (not just once per filter change) so a
+    // range boundary like "last 7 days" stays correct even if the screen is left open across
+    // a day rollover.
+    operator fun invoke(filter: TransactionFilter): Flow<List<Transaction>> =
+        repository.observeTransactions().map { transactions ->
+            val referenceDate = today()
             transactions.filter { it.matches(filter, referenceDate) }
         }
-    }
 
     // Checks whether a transaction satisfies the range/category/search-query filter.
     private fun Transaction.matches(
